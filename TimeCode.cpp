@@ -8,7 +8,7 @@ TimeCode::TimeCode(unsigned int hr, unsigned int min, long long unsigned int sec
 TimeCode::TimeCode(const TimeCode& tc){
     t = tc.t;
 }
-TimeCode::~TimeCode(){};
+//TimeCode::~TimeCode(){}
 
 // void SetHours(unsigned int hours);
 // void SetMinutes(unsigned int minutes);
@@ -20,7 +20,7 @@ TimeCode::~TimeCode(){};
 // unsigned int GetMinutes() const;
 // unsigned int GetSeconds() const;
 
-long long unsigned int TimeCode::GetTimeCodeAsSeconds() const {return t;};
+//long long unsigned int TimeCode::GetTimeCodeAsSeconds() const {return t;};
 void TimeCode::GetComponents(unsigned int& hr, unsigned int& min, unsigned int& sec) const{
     hr = t/3600;
     min = (t%3600)/60;
