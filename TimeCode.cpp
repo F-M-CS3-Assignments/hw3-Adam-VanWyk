@@ -83,7 +83,6 @@ TimeCode TimeCode::operator-(const TimeCode& other) const{
     } return difference;
     
 }
-// }
 // TimeCode operator*(double a) const;
 // TimeCode operator/(double a) const;
 
