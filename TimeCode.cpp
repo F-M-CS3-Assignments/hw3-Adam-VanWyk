@@ -16,14 +16,22 @@ void TimeCode::SetHours(unsigned int hours){
     t += hrDif*3600;
 }
 void TimeCode::SetMinutes(unsigned int minutes){
-    int minDif;
-    minDif = GetMinutes() - minutes;
-    t += minDif*60;
+    if (minutes <= 60){
+        int minDif;
+        minDif = minutes - GetMinutes();
+        t += minDif*60;
+    } else{
+        throw invalid_argument("No roll over on SetMinutes " + to_string(minutes));
+    }
 }
 void TimeCode::SetSeconds(unsigned int seconds){
-    int secDif;
-    secDif = GetSeconds() - seconds;
-    t += secDif;
+    if (seconds <= 60){
+        int secDif;
+        secDif = seconds - GetSeconds();
+        t += secDif;
+    } else{
+        throw invalid_argument("No roll over on SetSeconds " + to_string(seconds));
+    }
 }
 
 void TimeCode::reset(){
@@ -62,8 +70,16 @@ string TimeCode::ToString() const{
     return timecode;
 }
 
-// TimeCode operator+(const TimeCode& other) const;
-// TimeCode operator-(const TimeCode& other) const;
+TimeCode TimeCode::operator+(const TimeCode& other) const{
+    TimeCode added = TimeCode((GetHours() + other.GetHours()), (GetMinutes() + other.GetMinutes()), (GetSeconds() + other.GetSeconds()));
+    return added;
+}
+// TimeCode TimeCode::operator-(const TimeCode& other) const{
+//     if (t < other.t || (GetHours() < other.GetHours() && GetMinutes() < other.GetMinutes()) ){
+        
+//     }
+
+// }
 // TimeCode operator*(double a) const;
 // TimeCode operator/(double a) const;
 
