@@ -10,15 +10,41 @@ TimeCode::TimeCode(const TimeCode& tc){
 }
 //TimeCode::~TimeCode(){}
 
-// void SetHours(unsigned int hours);
-// void SetMinutes(unsigned int minutes);
-// void SetSeconds(unsigned int seconds);
+void TimeCode::SetHours(unsigned int hours){
+    int hrDif;
+    hrDif = GetHours() - hours;
+    t += hrDif*3600;
+}
+void TimeCode::SetMinutes(unsigned int minutes){
+    int minDif;
+    minDif = GetMinutes() - minutes;
+    t += minDif*60;
+}
+void TimeCode::SetSeconds(unsigned int seconds){
+    int secDif;
+    secDif = GetSeconds() - seconds;
+    t += secDif;
+}
 
-// void reset();
+void TimeCode::reset(){
+    t = 0; // resets time
+}
 
-// unsigned int GetHours() const;
-// unsigned int GetMinutes() const;
-// unsigned int GetSeconds() const;
+unsigned int TimeCode::GetHours() const{
+    unsigned int hours;
+    hours = t/3600;
+    return hours;
+}
+unsigned int TimeCode::GetMinutes() const{
+    unsigned int min;
+    min = (t%3600)/60;
+    return min;
+}
+unsigned int TimeCode::GetSeconds() const{
+    unsigned int sec;
+    sec = t%60;
+    return sec;
+}
 
 //long long unsigned int TimeCode::GetTimeCodeAsSeconds() const {return t;};
 void TimeCode::GetComponents(unsigned int& hr, unsigned int& min, unsigned int& sec) const{
@@ -30,7 +56,11 @@ long long unsigned int TimeCode::ComponentsToSeconds(unsigned int hr, unsigned i
     return (hr*3600) + (min*60) + sec;
 }
 
-// string ToString() const;
+string TimeCode::ToString() const{
+    string timecode;
+    timecode = to_string(GetHours()) + ":" + to_string(GetMinutes()) + ":" + to_string(GetSeconds());
+    return timecode;
+}
 
 // TimeCode operator+(const TimeCode& other) const;
 // TimeCode operator-(const TimeCode& other) const;
@@ -45,10 +75,3 @@ long long unsigned int TimeCode::ComponentsToSeconds(unsigned int hr, unsigned i
 
 // bool operator > (const TimeCode& other) const;
 // bool operator >= (const TimeCode& other) const;
-
-
-int main(){
-
-
-    return 0;
-}
