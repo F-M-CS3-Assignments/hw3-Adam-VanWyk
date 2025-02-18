@@ -175,9 +175,24 @@ void TestSetSeconds()
 	cout << "PASSED!" << endl << endl;
 }
 
+void TestEquality(){
+	cout << "Testing equality" << endl;
+	TimeCode tc = TimeCode(10, 12, 110);
+	TimeCode tc1 = TimeCode(1, 110, 12);
+	bool value;
+	value = (tc == tc);
+	assert(value==true);
 
-// Many More Tests...
+	bool value1 = (tc == tc1);
+	assert(value1==false);
 
+	bool value2 = (tc != tc1);
+	assert(value2==true);
+
+	bool value3 = (tc != tc);
+	assert(value3==false);
+	cout << "PASSED!!!!" << endl << endl;
+}
 	
 int main(){
 	
@@ -191,6 +206,7 @@ int main(){
 	TestSubtract();
 	TestMult();
 	TestDiv();
+	TestEquality();
 	
 	// Many othere test functions...
 	

@@ -108,11 +108,23 @@ TimeCode TimeCode::operator/(double a) const{
     return divTime;
 }
 
-// bool operator == (const TimeCode& other) const;
-// bool operator != (const TimeCode& other) const;
+bool TimeCode::operator== (const TimeCode& other) const{
+    return (t == other.t);
+}
+bool TimeCode::operator != (const TimeCode& other) const{
+    return (t != other.t);
+}
 
-// bool operator < (const TimeCode& other) const;
-// bool operator <= (const TimeCode& other) const;
+bool TimeCode::operator < (const TimeCode& other) const{
+    return (t < other.t);
+}
+bool TimeCode::operator <= (const TimeCode& other) const{
+    return (t <= other.t);
+}
 
-// bool operator > (const TimeCode& other) const;
-// bool operator >= (const TimeCode& other) const;
+bool TimeCode::operator > (const TimeCode& other) const{
+    return (t > other.t);
+}
+bool TimeCode::operator >= (const TimeCode& other) const{
+    return (t >= other.t);
+}
