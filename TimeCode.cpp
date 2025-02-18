@@ -74,11 +74,15 @@ TimeCode TimeCode::operator+(const TimeCode& other) const{
     TimeCode added = TimeCode((GetHours() + other.GetHours()), (GetMinutes() + other.GetMinutes()), (GetSeconds() + other.GetSeconds()));
     return added;
 }
-// TimeCode TimeCode::operator-(const TimeCode& other) const{
-//     if (t < other.t || (GetHours() < other.GetHours() && GetMinutes() < other.GetMinutes()) ){
-        
-//     }
-
+TimeCode TimeCode::operator-(const TimeCode& other) const{
+    TimeCode difference = TimeCode();
+    if (t < other.t){
+        throw invalid_argument("Cannot produce negative time...." + to_string(t) + " < " + to_string(other.t));
+    } else{
+        difference.t = t - other.t;
+    } return difference;
+    
+}
 // }
 // TimeCode operator*(double a) const;
 // TimeCode operator/(double a) const;

@@ -69,29 +69,29 @@ void TestGetComponents(){
 }
 
 
-// void TestSubtract(){
-// 	cout << "Testing Subtract" << endl;
-// 	TimeCode tc1 = TimeCode(1, 0, 0);
-// 	TimeCode tc2 = TimeCode(0, 50, 0);
-// 	TimeCode tc3 = tc1 - tc2;
-// 	assert(tc3.ToString() == "0:10:0");
+void TestSubtract(){
+	cout << "Testing Subtract" << endl;
+	TimeCode tc1 = TimeCode(1, 0, 0);
+	TimeCode tc2 = TimeCode(0, 50, 0);
+	TimeCode tc3 = tc1 - tc2;
+	assert(tc3.ToString() == "0:10:0");
 	
 	
-// 	TimeCode tc4 = TimeCode(1, 15, 45);
-// 	try{
-// 		TimeCode tc5 = tc1 - tc4;
-// 		cout << "tc5: " << tc5.ToString() << endl;
-// 		assert(false);
-// 	}
-// 	catch(const invalid_argument& e){
-// 		// just leave this empty
-// 		// and keep doing more tests
-// 	}
+	TimeCode tc4 = TimeCode(1, 15, 45);
+	try{
+		TimeCode tc5 = tc1 - tc4;
+		cout << "tc5: " << tc5.ToString() << endl;
+		assert(false);
+	}
+	catch(const invalid_argument& e){
+		// just leave this empty
+		// and keep doing more tests
+	}
 
-// 	// more tests
+	// more tests
 	
-// 	cout << "PASSED!" << endl << endl;
-// }
+	cout << "PASSED!" << endl << endl;
+}
 
 void TestAdd(){
 	cout << "Testing addition" << endl;
@@ -161,6 +161,7 @@ int main(){
 	TestSetMinutes();
 	TestSetSeconds();
 	TestAdd();
+	TestSubtract();
 	
 	// Many othere test functions...
 	
