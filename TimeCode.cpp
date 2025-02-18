@@ -1,3 +1,11 @@
+/*
+Author: Adam VanWyk 
+Last edit: 2/18/2025
+This is an implementation of a TimeCode class which allows a user to create, modify, and compare
+TimeCode objects by their seconds, minutes, and hours. Each TimeCode object only contains its 
+total number of seconds. 
+*/
+
 #include <iostream> 
 #include "TimeCode.h"
 using namespace std;
@@ -71,7 +79,8 @@ string TimeCode::ToString() const{
 }
 
 TimeCode TimeCode::operator+(const TimeCode& other) const{
-    TimeCode added = TimeCode((GetHours() + other.GetHours()), (GetMinutes() + other.GetMinutes()), (GetSeconds() + other.GetSeconds()));
+    TimeCode added = TimeCode((GetHours() + other.GetHours()), (GetMinutes() + other.GetMinutes()), 
+    (GetSeconds() + other.GetSeconds()));
     return added;
 }
 TimeCode TimeCode::operator-(const TimeCode& other) const{
@@ -83,8 +92,21 @@ TimeCode TimeCode::operator-(const TimeCode& other) const{
     } return difference;
     
 }
-// TimeCode operator*(double a) const;
-// TimeCode operator/(double a) const;
+TimeCode TimeCode::operator*(double a) const{
+    TimeCode multTime = TimeCode();
+    multTime.t = t*a;
+    return multTime;
+}
+TimeCode TimeCode::operator/(double a) const{
+    if (a==0){
+        throw invalid_argument("Cannot divide by 0.");
+    } else if(a < 0){
+        throw invalid_argument("Cannot produce negative time....");
+    }
+    TimeCode divTime = TimeCode();
+    divTime.t = t/a;
+    return divTime;
+}
 
 // bool operator == (const TimeCode& other) const;
 // bool operator != (const TimeCode& other) const;

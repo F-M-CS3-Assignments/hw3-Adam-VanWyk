@@ -102,6 +102,33 @@ void TestAdd(){
 	cout << "Passed!" << endl << endl;
 }
 
+void TestMult(){
+	cout << "Testing multiplication" << endl;
+	TimeCode tc = TimeCode(1, 1, 1);
+	double mult = 2;
+	tc = tc * mult;
+	assert(tc.ToString() == "2:2:2");
+	cout << "Passed" << endl << endl;
+}
+
+void TestDiv(){
+	cout << "Testing division" << endl;
+	TimeCode tc = TimeCode(2, 2, 2);
+	double div = 2;
+	tc = tc/div;
+	assert(tc.ToString() == "1:1:1");
+
+	div = -2;
+	try{
+		TimeCode tc = tc/div;
+		cout << "tc: " << tc.ToString() << endl;
+		assert(false);
+	}
+	catch(const invalid_argument& e){
+	}
+	cout << "Passed!" << endl << endl;
+}
+
 void TestSetMinutes()
 {
 	cout << "Testing SetMinutes" << endl;
@@ -162,6 +189,8 @@ int main(){
 	TestSetSeconds();
 	TestAdd();
 	TestSubtract();
+	TestMult();
+	TestDiv();
 	
 	// Many othere test functions...
 	
