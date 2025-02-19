@@ -101,7 +101,8 @@ TimeCode TimeCode::operator+(const TimeCode& other) const{
     return added;
 }
 // This method overloads the - operator for two TimeCode objects. It does not allow the creation of negative time, obviously.
-// 
+// The total time of the second is subtracted from the total time of the first (TimeCode objects) and
+// assigned to the difference TimeCode object. 
 TimeCode TimeCode::operator-(const TimeCode& other) const{
     TimeCode difference = TimeCode();
     if (t < other.t){
@@ -111,11 +112,16 @@ TimeCode TimeCode::operator-(const TimeCode& other) const{
     } return difference;
     
 }
+// This method overlods the * operator for a TimeCode object and a double. The resuliting TimeCode object's
+// total time is simply the product of the total time of the parameter and the double parameter. 
 TimeCode TimeCode::operator*(double a) const{
     TimeCode multTime = TimeCode();
     multTime.t = t*a;
     return multTime;
 }
+// This method overloads the / operator for a TimeCode object and a double. It does not allow for division
+// by 0 or by negative doubles as we cannot divide by zero or create negative time. 
+// The returned TimeCode object's total time is the parameter's total time divided by the double parameter. 
 TimeCode TimeCode::operator/(double a) const{
     if (a==0){
         throw invalid_argument("Cannot divide by 0.");
@@ -126,24 +132,21 @@ TimeCode TimeCode::operator/(double a) const{
     divTime.t = t/a;
     return divTime;
 }
-
-bool TimeCode::operator== (const TimeCode& other) const{
-    return (t == other.t);
+/*
+The remaining methods overload various boolean comparison operators. They are all implemented the same way.
+The compared TimeCode objects' total times are compared with the respective boolean comparison operators. 
+*/
+bool TimeCode::operator== (const TimeCode& other) const{return (t == other.t); 
 }
-bool TimeCode::operator != (const TimeCode& other) const{
-    return (t != other.t);
-}
-
-bool TimeCode::operator < (const TimeCode& other) const{
-    return (t < other.t);
-}
-bool TimeCode::operator <= (const TimeCode& other) const{
-    return (t <= other.t);
+bool TimeCode::operator != (const TimeCode& other) const{return (t != other.t);
 }
 
-bool TimeCode::operator > (const TimeCode& other) const{
-    return (t > other.t);
+bool TimeCode::operator < (const TimeCode& other) const{return (t < other.t);
 }
-bool TimeCode::operator >= (const TimeCode& other) const{
-    return (t >= other.t);
+bool TimeCode::operator <= (const TimeCode& other) const{return (t <= other.t);
+}
+
+bool TimeCode::operator > (const TimeCode& other) const{return (t > other.t);
+}
+bool TimeCode::operator >= (const TimeCode& other) const{return (t >= other.t);
 }
