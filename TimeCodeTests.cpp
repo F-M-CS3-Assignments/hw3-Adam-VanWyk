@@ -63,6 +63,10 @@ void TestGetComponents(){
 	tc.GetComponents(h, m, s);
 	assert(h == 5 && m == 2 && s == 18);
 	
+	TimeCode tc1 = TimeCode(100, 100, 100);
+	tc1.GetComponents(h, m, s);
+	assert(h == 101 && m == 41 && s == 40);
+	
 	// More tests go here!
 	
 	cout << "PASSED!" << endl << endl;

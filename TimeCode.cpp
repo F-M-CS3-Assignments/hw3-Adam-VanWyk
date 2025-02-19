@@ -1,6 +1,6 @@
 /*
 Author: Adam VanWyk 
-Last edit: 2/18/2025
+Last edit: 2/19/2025
 This is an implementation of a TimeCode class which allows a user to create, modify, and compare
 TimeCode objects by their seconds, minutes, and hours. Each TimeCode object only contains its 
 total number of seconds. 
