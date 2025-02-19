@@ -193,6 +193,38 @@ void TestEquality(){
 	assert(value3==false);
 	cout << "PASSED!!!!" << endl << endl;
 }
+
+void TestInequality(){
+	cout << "Testing Inequality" << endl;
+	TimeCode tc = TimeCode(100, 100, 100);
+	TimeCode ct = TimeCode(1, 1, 1);
+
+	bool value;
+	value = (tc < ct);
+	assert(value==false);
+
+	value = (ct < tc);
+	assert(value==true);
+
+	value = (tc > ct);
+	assert(value==true);
+
+	value = (ct > tc);
+	assert(value==false);
+//----------------
+	value = (tc <= tc);
+	assert(value==true);
+	
+	value = (tc >= tc);
+	assert(value==true);
+
+	value = (tc >= ct);
+	assert(value==true);
+
+	value = (tc <= ct);
+	assert(value==false);
+	cout << "PASSED" << endl << endl;
+}
 	
 int main(){
 	
@@ -207,8 +239,7 @@ int main(){
 	TestMult();
 	TestDiv();
 	TestEquality();
-	
-	// Many othere test functions...
+	TestInequality();
 	
 	cout << "PASSED ALL TESTS!!!" << endl;
 	return 0;
