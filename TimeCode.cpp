@@ -25,7 +25,7 @@ TimeCode::TimeCode(const TimeCode& tc){
 // This method allows the user to set a TimeCode object's hour amount, then edits the total seconds accordingly.
 void TimeCode::SetHours(unsigned int hours){
     int hrDif;
-    hrDif = GetHours() - hours;
+    hrDif = hours - GetHours();
     t += hrDif*3600;
 }
 // This method allows the user to set minutes, but does not allow values over 60 (no roll-overs). 
@@ -115,6 +115,9 @@ TimeCode TimeCode::operator-(const TimeCode& other) const{
 // This method overlods the * operator for a TimeCode object and a double. The resuliting TimeCode object's
 // total time is simply the product of the total time of the parameter and the double parameter. 
 TimeCode TimeCode::operator*(double a) const{
+    if (a < 0){
+        throw invalid_argument("Cannot create negative time. ");
+    }
     TimeCode multTime = TimeCode();
     multTime.t = t*a;
     return multTime;
