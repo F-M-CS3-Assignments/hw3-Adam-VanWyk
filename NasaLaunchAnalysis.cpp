@@ -10,6 +10,10 @@ Note #3: I have read the notes.
 #include <TimeCode.h>
 using namespace std;
 
+TimeCode parse_line(string line){
+    
+}
+
 int main(){
 
     
