@@ -7,15 +7,20 @@ Note #3: I have read the notes.
 
 #include <iostream>
 #include <fstream>
-#include <TimeCode.h>
+#include "TimeCode.h"
 using namespace std;
 
-TimeCode parse_line(string line){
-    
-}
+// TimeCode parse_line(string line){}
 
 int main(){
+    ifstream inFS;
 
+
+    inFS.open("Space_Corrected_Short.csv");
+    if (!inFS.is_open()){
+        cout << "File failed to open. " << endl;
+        return 1;
+    }
     
 
     return 0;
