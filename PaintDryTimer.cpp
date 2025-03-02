@@ -38,8 +38,7 @@ string drying_snap_shot_to_string(DryingSnapShot dss){
 
 
 double get_sphere_sa(double rad){
-	// replace with your code
-	return 0;
+	return 4*M_PI*rad*rad;
 }
 
 
@@ -82,7 +81,30 @@ void tests(){
 
 
 int main(){
-	// replace with your code
+	
+	string userInput;
+	cout << "Choose an option: (A)dd, (V)iew Current Items, (Q)uit: ";
+	cin >> userInput;
+	
+	while (userInput != "Q" && userInput != "q"){
+		if (userInput == "A" || userInput == "a"){
+			cout << "Adding" << endl;
+
+			cout << "Choose an option: (A)dd, (V)iew Current Items, (Q)uit: ";
+			cin >> userInput;
+		} else if(userInput == "V" || userInput == "v"){
+			cout << "Viewing" << endl;
+
+			cout << "Choose an option: (A)dd, (V)iew Current Items, (Q)uit: ";
+			cin >> userInput;
+		} else{
+			cout << "Choose an option: (A)dd, (V)iew Current Items, (Q)uit: ";
+			cin >> userInput;
+		}
+	}
+	
+ 
+
 	//tests());
 	return 0;
 }
