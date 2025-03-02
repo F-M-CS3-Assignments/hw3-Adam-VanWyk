@@ -82,7 +82,6 @@ int main(){
             times.push_back(time);        
         }
         getline(inFS, line);
-        // !inFS.eof()
     }   
     
     average = average/times.size();
