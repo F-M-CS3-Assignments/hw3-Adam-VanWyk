@@ -32,8 +32,16 @@ long long int get_time_remaining(DryingSnapShot dss){
 
 
 string drying_snap_shot_to_string(DryingSnapShot dss){
-	// Replace with your code
-	return "";
+	string s = "";
+	s += dss.name;
+	s += "(takes ";
+	s += dss.timeToDry->ToString();
+	s += " to dry) time remaining: ";
+
+	TimeCode timeRemaining(0, 0, 0);
+
+
+	return s;
 }
 
 
@@ -43,8 +51,9 @@ double get_sphere_sa(double rad){
 
 
 TimeCode *compute_time_code(double surfaceArea){
-	// replace with your code
-	return nullptr;
+	TimeCode time(0, 0, surfaceArea);
+	TimeCode* tcp = &time;
+	return tcp;
 }
 
 
@@ -90,6 +99,8 @@ int main(){
 		if (userInput == "A" || userInput == "a"){
 			cout << "Adding" << endl;
 
+
+
 			cout << "Choose an option: (A)dd, (V)iew Current Items, (Q)uit: ";
 			cin >> userInput;
 		} else if(userInput == "V" || userInput == "v"){
@@ -103,7 +114,7 @@ int main(){
 		}
 	}
 	
- 
+
 
 	//tests());
 	return 0;
