@@ -34,17 +34,17 @@ long long int get_time_remaining(DryingSnapShot dss){
 string drying_snap_shot_to_string(DryingSnapShot dss){
 	string s = "";
 	s += dss.name;
-	s += "(takes ";
+	s += " (takes ";
 	s += dss.timeToDry->ToString();
 	s += " to dry) ";
 
 	time_t end = time(0);
-	
-	if (end < dss.startTime){
+
+	if (dss.timeToDry->GetTimeCodeAsSeconds() <= static_cast<long long unsigned int>(end - dss.startTime)){
 		s += "DONE!";
 		return s;
 	} else{
-		TimeCode timeRemaining(0, 0, end - dss.startTime);
+		TimeCode timeRemaining(0, 0, dss.timeToDry->GetTimeCodeAsSeconds()-(end - dss.startTime));
 		s += "time remaining: ";
 		s += timeRemaining.ToString();
 		return s;
@@ -58,9 +58,7 @@ double get_sphere_sa(double rad){
 
 
 TimeCode *compute_time_code(double surfaceArea){
-	TimeCode time(0, 0, surfaceArea);
-	TimeCode* tcp = &time;
-	return tcp;
+	return new TimeCode(0, 0, surfaceArea);
 }
 
 
@@ -97,21 +95,36 @@ void tests(){
 
 
 int main(){
-	
+	srand(time(0));
+
+	vector <DryingSnapShot> dssVector;
 	string userInput;
 	cout << "Choose an option: (A)dd, (V)iew Current Items, (Q)uit: ";
 	cin >> userInput;
 	
+
 	while (userInput != "Q" && userInput != "q"){
 		if (userInput == "A" || userInput == "a"){
-			cout << "Adding" << endl;
 			
+			double radius;
+			cout << "Radius: ";
+			cin >> radius;
+			double surfaceA = get_sphere_sa(radius);
+			TimeCode* tcp = compute_time_code(surfaceA);
 
+			unsigned long long randNum = (rand() & 10000) * 100000 + (rand() % 100000);
+			string batchName = "Batch-" + to_string(randNum);
+
+			dssVector.emplace_back(DryingSnapShot{batchName, time(0), tcp});
+
+			cout << drying_snap_shot_to_string(dssVector.back()) << endl;
 
 			cout << "Choose an option: (A)dd, (V)iew Current Items, (Q)uit: ";
 			cin >> userInput;
 		} else if(userInput == "V" || userInput == "v"){
-			cout << "Viewing" << endl;
+			for (DryingSnapShot dss : dssVector){
+				cout << drying_snap_shot_to_string(dss) << endl;
+			}
 
 			cout << "Choose an option: (A)dd, (V)iew Current Items, (Q)uit: ";
 			cin >> userInput;
