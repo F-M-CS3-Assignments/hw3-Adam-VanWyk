@@ -24,13 +24,15 @@ struct DryingSnapShot {
 	TimeCode *timeToDry;
 };
 
-
+// This function calculates the remaining time to dry for a DryingSnapShot struct
+// by finding the difference between now and the start time of a dss.
 long long int get_time_remaining(DryingSnapShot dss){
 	time_t end = time(0);
 	return (end - dss.startTime);
 }
 
-
+// This function prints out a dss struct with a random 10 digit number identifier, 
+// as well as stating "DONE!" after the paint is dry. 
 string drying_snap_shot_to_string(DryingSnapShot dss){
 	string s = "";
 	s += dss.name;
@@ -51,12 +53,13 @@ string drying_snap_shot_to_string(DryingSnapShot dss){
 	}	
 }
 
-
+// Returns shere surface area with a parameter for the sphere's radius. 
 double get_sphere_sa(double rad){
 	return 4*M_PI*rad*rad;
 }
 
-
+// This computes the time to dry for a sphere by adding the surface area parameter's
+// amount of seconds to a TimeCode object. 
 TimeCode *compute_time_code(double surfaceArea){
 	return new TimeCode(0, 0, surfaceArea);
 }
@@ -97,7 +100,7 @@ void tests(){
 int main(){
 	srand(time(0));
 
-	vector <DryingSnapShot> dssVector;
+	vector <DryingSnapShot> dssVector; // Vector to hold all TimeCode objects
 	string userInput;
 	cout << "Choose an option: (A)dd, (V)iew Current Items, (Q)uit: ";
 	cin >> userInput;
@@ -115,14 +118,14 @@ int main(){
 			unsigned long long randNum = (rand() & 10000) * 100000 + (rand() % 100000);
 			string batchName = "Batch-" + to_string(randNum);
 
-			dssVector.emplace_back(DryingSnapShot{batchName, time(0), tcp});
+			dssVector.emplace_back(DryingSnapShot{batchName, time(0), tcp}); // Creates all TimeCode objects in the vector
 
-			cout << drying_snap_shot_to_string(dssVector.back()) << endl;
+			cout << drying_snap_shot_to_string(dssVector.back()) << endl; // Prints the created dss struct
 
 			cout << "Choose an option: (A)dd, (V)iew Current Items, (Q)uit: ";
 			cin >> userInput;
 		} else if(userInput == "V" || userInput == "v"){
-			for (DryingSnapShot dss : dssVector){
+			for (DryingSnapShot dss : dssVector){ // Iterates through the dss vector
 				cout << drying_snap_shot_to_string(dss) << endl;
 			}
 
