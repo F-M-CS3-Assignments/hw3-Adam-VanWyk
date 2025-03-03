@@ -26,8 +26,8 @@ struct DryingSnapShot {
 
 
 long long int get_time_remaining(DryingSnapShot dss){
-	// Replace with your code
-	return 0;
+	time_t end = time(0);
+	return (end - dss.startTime);
 }
 
 
@@ -36,12 +36,19 @@ string drying_snap_shot_to_string(DryingSnapShot dss){
 	s += dss.name;
 	s += "(takes ";
 	s += dss.timeToDry->ToString();
-	s += " to dry) time remaining: ";
+	s += " to dry) ";
 
-	TimeCode timeRemaining(0, 0, 0);
-
-
-	return s;
+	time_t end = time(0);
+	
+	if (end < dss.startTime){
+		s += "DONE!";
+		return s;
+	} else{
+		TimeCode timeRemaining(0, 0, end - dss.startTime);
+		s += "time remaining: ";
+		s += timeRemaining.ToString();
+		return s;
+	}	
 }
 
 
@@ -98,7 +105,7 @@ int main(){
 	while (userInput != "Q" && userInput != "q"){
 		if (userInput == "A" || userInput == "a"){
 			cout << "Adding" << endl;
-
+			
 
 
 			cout << "Choose an option: (A)dd, (V)iew Current Items, (Q)uit: ";
